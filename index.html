@@ -74,6 +74,24 @@
         #contrast-toggle:hover {
             opacity: 1;
         }
+        #reader-toggle {
+            position: fixed;
+            top: 55px;
+            right: 15px;
+            padding: 10px 14px;
+            background: #0044aa;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0.85;
+        }
+        #reader-toggle:hover {
+            opacity: 1;
+        }
         .high-contrast {
             background: #000 !important;
             color: #fff !important;
@@ -87,6 +105,10 @@
         }
         .high-contrast a {
             color: #ffff00 !important;
+        }
+        .high-contrast #reader-toggle {
+            background: #444;
+            color: #fff;
         }
         .header-image-container {
             text-align: center;
@@ -102,6 +124,7 @@
 <body>
 
 <button id="contrast-toggle" aria-label="Toggle high contrast mode">High Contrast</button>
+<button id="reader-toggle" aria-label="Toggle screen reader for main content">Read Page</button>
 
 <nav>
     <a href="#title">Home</a>
@@ -113,7 +136,7 @@
     <a href="#final">Final Remarks</a>
 </nav>
 
-<div class="container">
+<div class="container" id="main-content">
 
 <div class="header-image-container">
     <img src="gettyimages-155415266_2.jpg" alt="Farming landscape">
@@ -194,14 +217,46 @@ This data is published on an annual basis and contains key information such as i
 </div>
 
 <script>
-    const btn = document.getElementById("contrast-toggle");
-    btn.addEventListener("click", () => {
+    const contrastBtn = document.getElementById("contrast-toggle");
+    contrastBtn.addEventListener("click", () => {
         document.body.classList.toggle("high-contrast");
-        btn.textContent = document.body.classList.contains("high-contrast")
+        contrastBtn.textContent = document.body.classList.contains("high-contrast")
             ? "Normal Mode"
             : "High Contrast";
     });
+
+    const readerBtn = document.getElementById("reader-toggle");
+    const mainContent = document.getElementById("main-content");
+    let isReading = false;
+    let utterance = null;
+
+    if (!("speechSynthesis" in window)) {
+        readerBtn.disabled = true;
+        readerBtn.textContent = "Reading Not Supported";
+    } else {
+        readerBtn.addEventListener("click", () => {
+            if (!isReading) {
+                const text = mainContent.innerText;
+                utterance = new SpeechSynthesisUtterance(text);
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(utterance);
+                readerBtn.textContent = "Stop Reading";
+                isReading = true;
+                utterance.onend = () => {
+                    isReading = false;
+                    readerBtn.textContent = "Read Page";
+                };
+            } else {
+                window.speechSynthesis.cancel();
+                isReading = false;
+                readerBtn.textContent = "Read Page";
+            }
+        });
+    }
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
