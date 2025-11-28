@@ -13,8 +13,6 @@
             background: #fafafa;
             color: #222;
         }
-
-        
         nav {
             background: #ffffff;
             border-bottom: 1px solid #ddd;
@@ -33,7 +31,6 @@
         nav a:hover {
             text-decoration: underline;
         }
-
         .container {
             max-width: 850px;
             margin: auto;
@@ -53,11 +50,44 @@
         a {
             color: #0044aa;
         }
+        #contrast-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            padding: 10px 14px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0.85;
+        }
+        #contrast-toggle:hover {
+            opacity: 1;
+        }
+        .high-contrast {
+            background: #000 !important;
+            color: #fff !important;
+        }
+        .high-contrast nav {
+            background: #111 !important;
+            border-bottom: 2px solid #fff !important;
+        }
+        .high-contrast nav a {
+            color: #fff !important;
+        }
+        .high-contrast a {
+            color: #ffff00 !important;
+        }
     </style>
 </head>
 
 <body>
 
+<button id="contrast-toggle" aria-label="Toggle high contrast mode">High Contrast</button>
 
 <nav>
     <a href="#title">Home</a>
@@ -71,20 +101,17 @@
 
 <div class="container">
 
-
 <h1 id="title">Title: How has Food Imports and Shipping Changed In Recent Years and Why Does it Contribute to Your Plate?</h1>
 
 <h2>Audience & Intent:</h2>
 
 <p>This food import tale is designed for essentially everyone within the world! While that may seem generic, food import and international logistics impacts the lives of everyone whether you know it or not. Food imports can make or break diet culture, pricing and the overall wellness of individuals within a country. While there are many different individuals who may be interested in reading such a report, the key audience members would be international economics who may be focused on food logistics, farmers across the globe who want to see what the U.S is importing in most and American citizens who want to see which foods are projected to increase, decrease our maintain their current price and country of origin. The main goal is that these users are able to get a sense of which countries the U.S relies on the most for major food imports, how important food categories and importing countries have shifted over time, how the U.S food prices impact the world and vice versa, and how current and past political policies have shifted food import specifics such as importing countries, price and highest importing volume.</p>
 
-
 <h2 id="data">Data For This Project:</h2>
 
 <p>The dataset that will be used is the publicly available food imports data published yearly by the USDA. The data can be accessed here:
 <a href="https://www.ers.usda.gov/data-products/us-food-imports" target="_blank">https://www.ers.usda.gov/data-products/us-food-imports</a>.
 This data is published on an annual basis and contains key information that will help us assist some of the previously mentioned audiences such as import values of edible products (food and beverages) that enter U.S. ports and the products’ origin of shipment.</p>
-
 
 <h2 id="sankey">Where Does Your Food Really Come From?</h2>
 
@@ -99,10 +126,9 @@ This data is published on an annual basis and contains key information that will
 
 <p>Some of the key things that you will notice at first glance are our major food import partners being Canada and Mexico, and their respective imports ranging from vegetables, dairy, animals etc. You might also see that the rest of the world also contributes a massive amount of food to our food supply even if they might not be recognized by the mighty USDA. While we won’t delve into the specific imports of country by country, you can be guided through the interactive chart to see the separations.</p>
 
-
 <h2 id="map">World Map For The Largest 3 Food Imports Into The United States:</h2>
 
-<p>Below is a quick map chart showing the major importers for the 3 largest categories of food imports for the United States (Grain, Vegetables and Fruit). While this map shows, use the map diagram. It also tells us a story about how the majority of our consumption as Americans is actually not as meat focused and relies on cheaper and easier to maintain produce and carbohydrates. Again without delving into too much detail, it can be seen that Canada and Mexico (the usual culprits (: ), alongside peers such as Guatemala, Peru, Spain and China make up large portions of raw volume for the major food that goes on our plates daily as Americans.</p>
+<p>Below is a quick map chart showing the major importers for the 3 largest categories of food imports for the United States (Grain, Vegetables and Fruit). While this map shows, use the map diagram. It also tells us a story about how the majority of our consumption as Americans is actually not as meat focused and relies on cheaper and easier to maintain produce and carbohydrates. Again without delving into too much detail, it can be seen that Canada and Mexico (the usual culprits), alongside peers such as Guatemala, Peru, Spain and China make up large portions of raw volume for the major food that goes on our plates daily as Americans.</p>
 
 <div class="chart" aria-label="World map of top importers of grains, vegetables, and fruit into the U.S.">
 <div class="flourish-embed flourish-map" data-src="visualisation/26082533">
@@ -110,7 +136,6 @@ This data is published on an annual basis and contains key information that will
 <noscript><img src="https://public.flourish.studio/visualisation/26082533/thumbnail" alt="map visualization" /></noscript>
 </div>
 </div>
-
 
 <h2 id="inflation">Inflation, Inflation, Inflation, How Food Prices Have Suffered From This Dreaded Term:</h2>
 
@@ -131,10 +156,9 @@ This data is published on an annual basis and contains key information that will
 
 <p>2020: Again another sharp spike is seen in 2020 and this is mainly attributed to the COVID-19 pandemic which led to mass money printing and reduction of interest rates to ensure the global economy would not crash. As such, food import prices increased dramatically.</p>
 
-<p>2024: While most food groups maintained stability. Cocoa and chocolate saw a massive spike. The reasoning behind this is that global production for cocoa fell by a large margin and tariffs on major producers like Ghana and the Ivory Coast also led to their major import (cocoa) to spike in price as well. (We can live without chocolate, right???)</p>
+<p>2024: While most food groups maintained stability. Cocoa and chocolate saw a massive spike. The reasoning behind this is that global production for cocoa fell by a large margin and tariffs on major producers like Ghana and the Ivory Coast also led to their major import (cocoa) to spike in price as well.</p>
 
 <p>While there are many more nuanced spikes and crashes. These are the main events we consider relevant and hope are a little better explained now.</p>
-
 
 <h2 id="volume">Import Volume Changes Over Time</h2>
 
@@ -147,12 +171,24 @@ This data is published on an annual basis and contains key information that will
 </div>
 </div>
 
-<p>The main trend that we can see is that major food groups at the beginning of the century are mainly live meat animals, fruits and grains (in that order), and then live meat animals spiked down with fruits and vegetables leading the pack within recent years. This issue of live meat animals might even become more of an issue as current prices have led to questioning if we should import Argentinian beef to possibly reduce prices within the United States. The remaining food categories maintained relatively the same ordering throughout the turn of the century to now. We hope that this analysis is sufficient and that you can look at the minor details and percentages in your own time. (You might see some Argentinian beef in your local</p>
+<p>The main trend that we can see is that major food groups at the beginning of the century are mainly live meat animals, fruits and grains (in that order), and then live meat animals spiked down with fruits and vegetables leading the pack within recent years. This issue of live meat animals might even become more of an issue as current prices have led to questioning if we should import Argentinian beef to possibly reduce prices within the United States. The remaining food categories maintained relatively the same ordering throughout the turn of the century to now. We hope that this analysis is sufficient and that you can look at the minor details and percentages in your own time.</p>
 
 <h2 id="final">Final Remarks:</h2>
 
 <p>This exploration between you and us has shown us that the food on you and our plates depend deeply on a logistics, economic and political system that we take for granted. The United States would not be a functioning country without having access to a diverse set of food groups from the great partners that support us. These relationships change due to prices, climate, regime changes and many other factors, so it is important that we are able to use such visuals to have a concise, easy to understand and accessible presentation format for people across the world. From financial crises, major storms, tariffs and pandemics have rippling effects that eventually end up on our tables. Understanding these complex dynamics allow consumers, policymakers and farmers from across the world to approach an ever changing complex world where every decision influences whether individuals skip a meal or not.</p>
 
 </div>
+
+<script>
+    const btn = document.getElementById("contrast-toggle");
+    btn.addEventListener("click", () => {
+        document.body.classList.toggle("high-contrast");
+        btn.textContent =
+            document.body.classList.contains("high-contrast")
+            ? "Normal Mode"
+            : "High Contrast";
+    });
+</script>
+
 </body>
 </html>
